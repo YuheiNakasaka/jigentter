@@ -1,0 +1,82 @@
+<div id="jt-wrapper">
+  <div id="jt-container">
+
+    <div id="jt-header">
+      <div class="jt-header-title">
+        <h1>時限ったー</h1>
+      </div>
+      <div class="jt-header-auth">
+        <% if current_user.blank? %>
+          <%= link_to user_omniauth_authorize_path(:twitter), class: "jt-header-auth-button" do %>
+            <i class="fa fa-twitter"></i>ツイッターでサインイン
+          <% end %>
+        <% else %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "jt-header-auth-button sign-out" do %>
+            <i class="fa fa-twitter"></i>サインアウト
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <% if current_user.present? %>
+      <div id="jt-body">
+        <!-- <marquee></marquee> -->
+        <div id="jt-body-forms">
+          <% flash.each do |k,v| %>
+            <p class="alert <%= k %>"><%= v %></p>
+          <% end %>
+          <%= form_for @tweet do |f|%>
+            <div class="jt-body-forms-tweet"><%= f.text_area :text, placeholder: "どうせ１時間くらいで消えるので気楽につぶやいてな" %></div>
+            <div class="jt-body-forms-meta">
+              <%= f.file_field :img_data, class: "jt-body-form-file", accept: "image/*" %>
+              <div class="jt-body-forms-img">
+                <span class="jt-body-forms-img-camera"><i class="fa fa-camera"></i> <span class="jt-body-forms-m-btn">メディア</span></span>
+                <div class="jt-body-forms-preview"></div>
+                <div class="jt-body-forms-addtag"><span><i class="fa fa-tag"></i> <span class="jt-body-forms-m-btn">ハッシュタグ</span></span></div>
+              </div>
+              <div class="jt-body-forms-words"><span class="count">0</span><span class="word">文字</span></div>
+              <div class="jt-body-forms-submit"><%= f.button "ツイートする" %></div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="jt-body-timeline">
+          <div class="jt-body-timeline-lists">
+            <% @mytweets.each do |mytweet| %>
+              <div class="jt-body-timeline-list">
+                <div class="jt-body-timeline-list-body">
+                  <p><%= mytweet.try(:text) %></p>
+                </div>
+                <div class="jt-body-timeline-list-bottom">
+                  <p class="jt-body-timeline-list-bottom-time">
+                    <%= link_to "削除まで#{time_diff(mytweet.try(:created_at))}", "https://twitter.com/#{@screen_name}/status/#{mytweet.try(:tweet_identifier)}" %>
+                    <% if mytweet.try(:img_data).present? %>
+                      <span><i class="fa fa-paperclip"></i> 画像有り</span>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div id="jt-free">
+        <marquee scrollamount="15" behavior="alternate"><p class="jt-free-label">１時間くらいで消えてもよいツイートをしてな</p><img class="jt-free-icon" src="./statics/jigen.png"></marquee>
+      </div>
+    <% else %>
+      <div id="jt-body">
+        <img class="jt-body-nologin-img" src="http://i.imgur.com/yu8AqbZ.gif">
+      </div>
+      <div id="jt-free" class="nologin">
+        <marquee scrollamount="15" behavior="alternate"><p class="jt-free-label">時限ったーから投稿されたツイートは<br>１時間くらいしたら勝手に消えるからよろしく</p><img class="jt-free-icon" src="http://i.imgur.com/emxPqYn.png"></marquee>
+      </div>
+    <% end %>
+
+    <div id="jt-footer">
+      <footer>
+        <span>&copy; 2015 時限ったー ALL Rights Reserved.</span>
+      </footer>
+    </div>
+  </div>
+</div>

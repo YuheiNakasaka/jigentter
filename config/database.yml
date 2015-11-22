@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+
+development:
+  <<: *default
+  database: expitter_development
+  socket: /tmp/mysql.sock
+
+test:
+  <<: *default
+  database: expitter_test
+  socket: /tmp/mysql.sock
+
+production:
+  <<: *default
+  database: <%= ENV['JIGENTTER_DATABASE_NAME'] %>
+  username: <%= ENV['JIGENTTER_DATABASE_USER'] %>
+  password: <%= ENV['JIGENTTER_DATABASE_PASSWORD'] %>
+  host: <%= ENV['JIGENTTER_DATABASE_HOST'] %>
