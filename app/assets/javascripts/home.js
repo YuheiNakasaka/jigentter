@@ -21,7 +21,7 @@ $(function(){
     refreshWordCount();
   });
   $('.jt-body-forms-addtag').on('click', function(){
-    var mergedText = $(".jt-body-forms-tweet textarea").val() + "#１時間くらいで消えるツイート";
+    var mergedText = $(".jt-body-forms-tweet textarea").val() + " #１時間くらいで消えるツイート";
     $(".jt-body-forms-tweet textarea").val(mergedText);
     refreshWordCount();
   });
