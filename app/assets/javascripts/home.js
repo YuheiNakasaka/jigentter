@@ -30,7 +30,7 @@ $(function(){
     loading('show');
     refreshWordCount();
     tweetCount = parseInt($('.jt-body-forms-words .count').text());
-    if (tweetCount < 0 || tweetCount > 140) {
+    if (tweetCount < 1 || tweetCount > 140) {
       loading('hide');
       return false;
     }
