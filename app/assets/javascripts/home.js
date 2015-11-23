@@ -27,9 +27,11 @@ $(function(){
   });
   // submit
   $("#new_tweet").submit(function(){
+    loading('show');
     refreshWordCount();
     tweetCount = parseInt($('.jt-body-forms-words .count').text());
     if (tweetCount < 0 || tweetCount > 140) {
+      loading('hide');
       return false;
     }
   });
@@ -42,8 +44,6 @@ $(function(){
   });
 
   function urlRep(str) {
-    // var pattern = new RegExp('(https?:\\/\\/)?'+ '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ '((\\d{1,3}\\.){3}\\d{1,3}))'+ '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ '(\\?[;&a-z\\d%_.~+=-]*)?'+ '(\\#[-a-z\\d_]*)?','ig');
-    // var pattern = new RegExp('https?:\/\/([\w*%#!()~\'-]+\.)+[\w*%#!()~\'-]+(\/[\w*%#!()~\'-.]+)*','ig');
     return str.replace(/https?:\/\/([\w*%#!()~\'-]+\.)+[\w*%#!()~\'-]+(\/[\w*%#!()~\'-.]+)*/ig, '00000000000000000000000');
   }
 
@@ -53,5 +53,13 @@ $(function(){
 
   function refreshWordCount() {
     $(".jt-body-forms-tweet textarea").trigger('change');
+  }
+
+  function loading(flag) {
+    if (flag == 'show') {
+      $('#jigentter-loading-overlay').show();
+    } else {
+      $('#jigentter-loading-overlay').hide();
+    }
   }
 });

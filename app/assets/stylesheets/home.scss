@@ -120,6 +120,7 @@ body {
     width: 50px;
     padding: 12px 0 0 0;
     display: inline-block;
+    margin-left: 5px;
   }
   .jt-body-forms-addtag span {
     background-color: #ccd6dd;
@@ -216,15 +217,55 @@ body {
     display: block;
   }
   #jt-footer {
-/*    position: fixed;*/
     bottom: 0;
     padding: 10px 0;
-    text-align: center;
+    text-align: left;
+    position: relative;
     footer {
       span { font-size: 10px; }
+      #share_tw {
+        position: absolute;
+        right: 0;
+        font-size: 10px;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: #55acee;
+        i {
+          color: #fff;
+          font-size: 13px;
+        }
+      }
     }
   }
-
+  /************* loading **************/
+  #jigentter-loading-overlay {
+    display: none;
+    background: rgba(30,30,30,0.9);
+    top: 0;
+    left: 0;
+    z-index: 10007;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow-y: scroll;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+  }
+  #jigentter-loading-overlay-inner {
+    position: fixed;
+    top: 46%;
+    left: 44%;
+    height: auto;
+    max-width: 100%;
+  }
+  #jigentter-loading-overlay-inner img {
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+  }
 }
 
 
@@ -424,8 +465,50 @@ body {
     width: 769px;
     padding: 10px 0;
     text-align: left;
+    position: relative;
     footer {
-      span { font-size: 12px; }
+      span { font-size: 16px; }
+      #share_tw {
+        position: absolute;
+        right: 0;
+        font-size: 10px;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: #55acee;
+        i {
+          color: #fff;
+          font-size: 13px;
+        }
+      }
     }
+  }
+  /************* loading **************/
+  #jigentter-loading-overlay {
+    display: none;
+    background: rgba(30,30,30,0.9);
+    top: 0;
+    left: 0;
+    z-index: 10007;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow-y: scroll;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+  }
+  #jigentter-loading-overlay-inner {
+    position: fixed;
+    top: 46%;
+    left: 44%;
+    height: auto;
+    max-width: 100%;
+  }
+  #jigentter-loading-overlay-inner img {
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
   }
 }
