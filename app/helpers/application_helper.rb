@@ -12,4 +12,8 @@ module ApplicationHelper
       "#{hours.to_s.rjust(2, '0')}時間#{minutes.to_s.rjust(2, '0')}分#{seconds.to_s.rjust(2, '0')}秒"
     end
   end
+
+  def not_tweeted(tw_id)
+    return 'not-tweeted' if tw_id.blank?
+  end
 end

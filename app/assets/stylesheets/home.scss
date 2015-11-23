@@ -169,12 +169,26 @@ body {
     section {
       text-align: center;
     }
+    .jt-body-timeline-header {
+      text-align: center;
+      margin: 0 0 20px 0;
+      .jt-body-timeline-header-refresh {
+        cursor: pointer;
+        padding: 5px;
+        font-size: 16px;
+        color: #55acee;
+        text-decoration: none;
+      }
+    }
     .jt-body-timeline-list {
       margin: 10px 0;
-      border: 1px solid #aaa;
+      border: 1px solid #55acee;
       border-radius: 4px;
       padding: 7px;
       word-wrap: break-word;
+      &.not-tweeted {
+        border: 1px solid #aaa;
+      }
       .jt-body-timeline-list-body {
         margin: 0 0 10px 0;
         p {
@@ -418,11 +432,25 @@ body {
     section {
       text-align: center;
     }
+    .jt-body-timeline-header {
+      text-align: center;
+      margin: 0 0 20px 0;
+      .jt-body-timeline-header-refresh {
+        cursor: pointer;
+        padding: 5px;
+        font-size: 16px;
+        color: #55acee;
+        text-decoration: none;
+      }
+    }
     .jt-body-timeline-list {
       margin: 10px 0;
-      border: 1px solid #aaa;
+      border: 1px solid #55acee;
       border-radius: 4px;
       padding: 7px;
+      &.not-tweeted {
+        border: 1px solid #aaa;
+      }
       .jt-body-timeline-list-header a {
         font-size: 15px;
         font-weight: bold;

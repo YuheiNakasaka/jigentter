@@ -72,5 +72,5 @@ Rails.application.configure do
   config.logger.level = Logger::INFO
   config.colorize_logging = true
   # resque log
-  config.resque_logger = Logger.new(Rails.root.join('log/resque_worker.log'))
+  config.resque_logger = Logger.new(Rails.root.join('log/resque_worker.log'), 5, 10 * 1024 * 1024)
 end

@@ -41,23 +41,31 @@
         </div>
 
         <div id="jt-body-timeline">
-          <div class="jt-body-timeline-lists">
-            <% @mytweets.each do |mytweet| %>
-              <div class="jt-body-timeline-list">
-                <div class="jt-body-timeline-list-body">
-                  <p><%= mytweet.try(:text) %></p>
+          <% if @mytweets.present? %>
+            <div class="jt-body-timeline-header">
+              <a class="jt-body-timeline-header-refresh" href="<%= root_path %>"><i class="fa fa-refresh"></i> 投稿を更新する</a>
+            </div>
+            <div class="jt-body-timeline-lists">
+              <% @mytweets.each do |mytweet| %>
+                <div class="jt-body-timeline-list <%= not_tweeted(mytweet.try(:tweet_identifier)) %>">
+                  <div class="jt-body-timeline-list-body">
+                    <p><%= mytweet.try(:text) %></p>
+                  </div>
+                  <div class="jt-body-timeline-list-bottom">
+                    <p class="jt-body-timeline-list-bottom-time">
+                      <%= link_to "削除まで#{time_diff(mytweet.try(:created_at))}", "https://twitter.com/#{@screen_name}/status/#{mytweet.try(:tweet_identifier)}" %>
+                      <% if mytweet.try(:img_data).present? %>
+                        <span><i class="fa fa-paperclip"></i> 画像有り</span>
+                      <% end %>
+                      <% if not_tweeted(mytweet.try(:tweet_identifier)).present? %>
+                        <span>投稿中...</span>
+                      <% end %>
+                    </p>
+                  </div>
                 </div>
-                <div class="jt-body-timeline-list-bottom">
-                  <p class="jt-body-timeline-list-bottom-time">
-                    <%= link_to "削除まで#{time_diff(mytweet.try(:created_at))}", "https://twitter.com/#{@screen_name}/status/#{mytweet.try(:tweet_identifier)}" %>
-                    <% if mytweet.try(:img_data).present? %>
-                      <span><i class="fa fa-paperclip"></i> 画像有り</span>
-                    <% end %>
-                  </p>
-                </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
 
